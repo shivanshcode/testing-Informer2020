@@ -89,7 +89,7 @@ class Construct_FaithfulVec:
         if self.pad:
             x_embedded = F.pad(x_embedded, (0, 0, self.m * self.tao, 0))
         x_embedded = x_embedded.to('cpu')
-        print(f'Size of Embedded vec: {x_embedded}; Location: exp/Construct_FaithfulVec', flush=True)
+        print(f'Size of Embedded vec: {x_embedded.shape}; Location: exp/Construct_FaithfulVec', flush=True)
         return x_embedded
 
         
