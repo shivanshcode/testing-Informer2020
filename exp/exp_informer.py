@@ -88,7 +88,7 @@ class Construct_FaithfulVec:
         # Padding along time dimension if needed
         if self.pad:
             x_embedded = F.pad(x_embedded, (0, 0, self.m * self.tao, 0))
-        
+        x_embedded = x_embedded.to('cpu')
         return x_embedded
 
         
