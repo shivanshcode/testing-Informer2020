@@ -38,7 +38,7 @@ class PositionalEmbedding(nn.Module):
 #         return x
 
 class TokenEmbedding(nn.Module):
-    def __init__(self, c_in, d_model, tao=24, m=7, pad=True, is_split=True):
+    def __init__(self, c_in, d_model, tao=24, m=7, pad=True, is_split=False):
         super(TokenEmbedding, self).__init__()
         self.tao = tao
         self.m = m
