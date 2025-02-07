@@ -285,5 +285,6 @@ class Exp_Informer(Exp_Basic):
             outputs = dataset_object.inverse_transform(outputs)
         f_dim = -1 if self.args.features=='MS' else 0
         batch_y = batch_y[:,-self.args.pred_len:,f_dim:].to(self.device)
+        print(f'batch from output:    {outputs.shape}    {batch_y.shape}', flush=True)
 
         return outputs, batch_y
