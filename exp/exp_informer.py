@@ -335,7 +335,7 @@ class Exp_Informer(Exp_Basic):
         faithfulvec = Construct_FaithfulVec()
         
         batch_y = batch_y.float()
-        batch_y = fathfulvec.forward(batch_y)
+        batch_y = faithfulvec.forward(batch_y)
 
         # Testing
         print(f' Batch X: {batch_x.shape}, Batch Y: {batch_y.shape}, Batch X Mark: {batch_x_mark.shape}, Batch Y Mark: {batch_y_mark.shape}; Location: _process_one_batch', flush=True)
