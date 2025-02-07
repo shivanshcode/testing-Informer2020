@@ -53,7 +53,37 @@ class Construct_FaithfulVec:
         return faithful_vec
 
     def forward(x):
+        """Forward pass of the TokenEmbedding layer."""
+
+        batch_size, seq_len, cin = x.shape
+
+        x_list = []
+
+        # Convert input to tensor if needed
+        if isinstance(x, np.ndarray):
+            x = torch.tensor(x, dtype=torch.float32, device=self.device)
+        else:
+            x = x.to(self.device)
+
+        # Process each batch entry separately
+        for batch_val in range(batch_size):
+            ts_batch = x[batch_val]  # shape: (seq_len, c_in)
+
+            try:
+                extracted_data = self.data_extract(ts_batch)
+                x_list.append(extracted_data)
+            except Exception as e:
+                print(f"Error in data_extract for batch {batch_val}: {e}", flush=True)
+                raise
+
+        # Stack along the batch dimension
+        x_embedded = torch.stack(x_list)
+
+        # Padding along time dimension if needed
+        if self.pad:
+            x_embedded = F.pad(x_embedded, (0, 0, self.m * self.tao, 0))
         
+        return x_embedded
 
         
         
