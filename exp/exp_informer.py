@@ -21,7 +21,7 @@ warnings.filterwarnings('ignore')
 
 
 class Construct_FaithfulVec:
-    def __init__(tao=1, m=7):
+    def __init__(self, tao=1, m=7):
         self.m = m
         self.tao = tao
     def data_extract(self, ts_batch):
