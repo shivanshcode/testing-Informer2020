@@ -143,12 +143,12 @@ class InformerStack(nn.Module):
         
     def forward(self, x_enc, x_mark_enc, x_dec, x_mark_dec, 
                 enc_self_mask=None, dec_self_mask=None, dec_enc_mask=None):
-        print('Encoder calling data, model.py', x_enc, flush=True)
+        print('Encoder calling data, model.py', x_enc.shape, flush=True)
         enc_out = self.enc_embedding(x_enc, x_mark_enc)
         enc_out, attns = self.encoder(enc_out, attn_mask=enc_self_mask)
 
 
-        print('Decoder calling data, model.py', x_dec, flush=True)            
+        print('Decoder calling data, model.py', x_dec.shape, flush=True)            
         dec_out = self.dec_embedding(x_dec, x_mark_dec)
         dec_out = self.decoder(dec_out, enc_out, x_mask=dec_self_mask, cross_mask=dec_enc_mask)
         dec_out = self.projection(dec_out)
