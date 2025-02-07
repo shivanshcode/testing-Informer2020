@@ -124,7 +124,7 @@ class TokenEmbedding(nn.Module):
         if self.pad:
             x_embedded = F.pad(x_embedded, (0, 0, self.m * self.tao, 0))
      
-        
+        print(f'Faithful vector shape: {x_embedded.shape}')
         if self.is_split == True:
             # Split last dimension for convolution
             x_embedded1 = torch.split(x_embedded, self.m + 1, dim=2)
