@@ -363,5 +363,5 @@ class Exp_Informer(Exp_Basic):
         f_dim = -1 if self.args.features=='MS' else 0
         batch_y = batch_y[:,-self.args.pred_len:,f_dim:].to(self.device)
         #print(f'batch from output:    {outputs.shape}    {batch_y.shape}', flush=True)
-
+        print(f'Predicted output: {outputs.shape}, Location: exp/Exp_Informer/_process_one_batch', flush=True)
         return outputs, batch_y
