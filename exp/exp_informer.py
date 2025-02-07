@@ -179,7 +179,7 @@ class Exp_Informer(Exp_Basic):
             shuffle=shuffle_flag,
             num_workers=args.num_workers,
             drop_last=drop_last)
-
+        print(f'Data_set: {data_set}, Data_Loader: {data_loader}; Location: exp/exp_informer/_get_data_', flush=True) 
         return data_set, data_loader
 
     def _select_optimizer(self):
