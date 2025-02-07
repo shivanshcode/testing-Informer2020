@@ -18,6 +18,47 @@ import time
 import warnings
 warnings.filterwarnings('ignore')
 
+
+class Construct_FaithfulVec:
+    def __init__(tao=1, m=7):
+        self.m = m
+        self.tao = tao
+    def data_extract(self, ts_batch):
+        """
+        Vectorized extraction of faithful vectors.
+        """
+        #print("Inside data_extract, ts_batch.shape:", ts_batch.shape, flush=True)
+        # ts_batch is assumed to be already on self.device with shape (n_seq, c_in)
+        n_seq, cin = ts_batch.shape
+        n_valid = n_seq - self.m * self.tao  # valid time indices
+
+        if n_valid <= 0:
+            raise ValueError(f"Invalid n_valid={n_valid}. Check seq_length, m, and tao values.")
+
+        # Create time indices
+        t_indices = torch.arange(self.m * self.tao, n_seq, device=ts_batch.device)
+
+        # Create offsets and compute time indices
+        offsets = torch.arange(0, self.m + 1, device=ts_batch.device) * self.tao  
+        time_indices = t_indices.unsqueeze(1) - offsets.unsqueeze(0)
+
+        # Create a channel index tensor
+        channel_idx = torch.arange(cin, device=ts_batch.device).view(1, cin, 1).expand(n_valid, cin, self.m + 1)
+        time_idx_expanded = time_indices.unsqueeze(1).expand(n_valid, cin, self.m + 1)
+
+        # Extract values using advanced indexing
+        extracted = ts_batch[time_idx_expanded, channel_idx]
+        faithful_vec = extracted.reshape(n_valid, cin * (self.m + 1))
+
+        return faithful_vec
+
+    def forward(x):
+        
+
+        
+        
+        
+
 class Exp_Informer(Exp_Basic):
     def __init__(self, args):
         super(Exp_Informer, self).__init__(args)
