@@ -164,7 +164,7 @@ class InformerStack(nn.Module):
         dec_out = self.projection(dec_out)
 
         # Testing 
-        print(f' Decoder output: {dec_out.shape}, Location: model.py/informerstack/forward()', flush=True}            
+        print(f' Decoder output: {dec_out.shape}, Location: model.py/informerstack/forward()', flush=True)            
       
                     
         # dec_out = self.end_conv1(dec_out)
