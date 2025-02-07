@@ -262,6 +262,9 @@ class Exp_Informer(Exp_Basic):
         batch_x = batch_x.float().to(self.device)
         batch_y = batch_y.float()
 
+        # Testing
+        print(f' Batch X: {batch_x.shape}, Batch Y: {batch_y.shape}, Batch X Mark: {batch_x_mark.shape}, Batch Y Mark: {batch_y_mark.shape}; Location: _process_one_batch', flush=True)
+
         batch_x_mark = batch_x_mark.float().to(self.device)
         batch_y_mark = batch_y_mark.float().to(self.device)
 
