@@ -68,7 +68,7 @@ class TokenEmbedding(nn.Module):
         """
         Vectorized extraction of faithful vectors.
         """
-        print("Inside data_extract, ts_batch.shape:", ts_batch.shape, flush=True)
+        #print("Inside data_extract, ts_batch.shape:", ts_batch.shape, flush=True)
         # ts_batch is assumed to be already on self.device with shape (n_seq, c_in)
         n_seq, cin = ts_batch.shape
         n_valid = n_seq - self.m * self.tao  # valid time indices
@@ -124,7 +124,7 @@ class TokenEmbedding(nn.Module):
         if self.pad:
             x_embedded = F.pad(x_embedded, (0, 0, self.m * self.tao, 0))
      
-        print(f'Faithful vector shape: {x_embedded.shape}')
+        print(f'Faithful vector shape: {x_embedded.shape}', flush=True)
         if self.is_split == True:
             # Split last dimension for convolution
             x_embedded1 = torch.split(x_embedded, self.m + 1, dim=2)
