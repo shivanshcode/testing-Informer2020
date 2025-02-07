@@ -24,6 +24,11 @@ class Construct_FaithfulVec:
     def __init__(self, tao=1, m=7):
         self.m = m
         self.tao = tao
+        self.pad = True
+        self.c_in = 7
+        self.is_split = False
+        self.kernels = int(512 / 7)
+        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     def data_extract(self, ts_batch):
         """
         Vectorized extraction of faithful vectors.
