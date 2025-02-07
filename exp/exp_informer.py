@@ -28,6 +28,8 @@ class Exp_Informer(Exp_Basic):
             'informerstack':InformerStack,
         }
         if self.args.model=='informer' or self.args.model=='informerstack':
+            #Testing
+            print(f' Cout used by the exp_informer: {self.args.c_out}, Location: exp/exp_informer.py/Exp_Informer', flush=True)
             e_layers = self.args.e_layers if self.args.model=='informer' else self.args.s_layers
             model = model_dict[self.args.model](
                 self.args.enc_in,
