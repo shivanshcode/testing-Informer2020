@@ -53,7 +53,7 @@ class Construct_FaithfulVec:
 
         return faithful_vec
 
-    def forward(x):
+    def forward(self, x):
         """Forward pass of the TokenEmbedding layer."""
 
         batch_size, seq_len, cin = x.shape
