@@ -66,7 +66,7 @@ class Informer(nn.Module):
 
         # Testing 
         val = self.projection
-        print(f' Cout:    {c_out}, Decoder output: {val.shape}, Location: model.py/informer/init()', flush=True)
+        print(f' Cout:    {c_out}, Decoder output: {val.out_features}, Location: model.py/informer/init()', flush=True)
         
     def forward(self, x_enc, x_mark_enc, x_dec, x_mark_dec, 
                 enc_self_mask=None, dec_self_mask=None, dec_enc_mask=None):
@@ -149,7 +149,7 @@ class InformerStack(nn.Module):
         
         # Testing 
         val = self.projection
-        print(f' Cout:    {c_out}, Decoder output: {val.shape}, Location: model.py/informerstack/init()', flush=True)
+        print(f' Cout:    {c_out}, Decoder output: {val.out_features}, Location: model.py/informerstack/init()', flush=True)
      
         
     def forward(self, x_enc, x_mark_enc, x_dec, x_mark_dec, 
