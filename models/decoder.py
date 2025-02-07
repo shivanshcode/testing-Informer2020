@@ -47,5 +47,5 @@ class Decoder(nn.Module):
 
         if self.norm is not None:
             x = self.norm(x)
-
+        print(f'Output of Decoder {x.shape}', flush=True)
         return x
